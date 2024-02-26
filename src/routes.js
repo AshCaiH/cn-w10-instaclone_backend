@@ -23,7 +23,7 @@ router.delete("/images/like", common.basic); // Remove from user's likes, and re
 
 
 // Other routes
-router.get("/unsplash/getlist", common.basic); // Grab images from unsplash.
+router.get("/unsplash/getlist", common.getImages); // Grab images from unsplash.
 router.get("/unsplash/getrandom", common.basic); // Grab a random image from unsplash.
 
 module.exports = router;
