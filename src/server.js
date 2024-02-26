@@ -6,13 +6,13 @@ const app = express();
 
 const User = require("./models/users/model");
 const Image = require("./models/images/model");
-// const userRouter = require("./models/users/routes");
+const userRouter = require("./models/users/routes");
 
 const models = [User, Image];
 
 const port = process.env.PORT || 5001;
 
-app.use(express.json(), cors()); //userRouter);
+app.use(express.json(), cors(), userRouter);
 
 app.get("/health", (req, res) => {
     res.status(200).json({message: "API is healthy"});
