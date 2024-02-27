@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
-const common = require("./common/controllers"); // TODO: Add controllers for image and other.
+const common = require("./controllers/common"); // TODO: Add controllers for image and other.
 
 // User routes
 router.post("/user/login", common.basic);
@@ -14,7 +14,7 @@ router.put("/user/update", common.basic); // Update email, password, etc.
 router.delete("/user/delete", common.basic);
 
 
-// Stored image routes
+// Image routes
 router.post("/image/like", common.basic); // Add to table if item doesn't exist, and to user's likes.
 
 router.get("/image/liked", common.basic); // Get list of most liked images.

@@ -4,8 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const User = require("./models/users/model");
-const Image = require("./models/images/model");
+const { User, Image } = require("./models");
 const router = require("./routes");
 
 const models = [User, Image];
@@ -20,7 +19,6 @@ app.get("/health", (req, res) => {
 
 app.listen(port, async () => {
     models.map((model) => app.use(model));
-
     
     User.hasMany(Image);
     Image.belongsToMany(User, {through: "Likes"});

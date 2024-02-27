@@ -1,4 +1,4 @@
-const { sendMessage } = require("./responses")
+const { sendMessage } = require("../common/responses")
 
 module.exports = {
     basic: async(req, res, next) => {
