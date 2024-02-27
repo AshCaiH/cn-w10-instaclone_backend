@@ -4,7 +4,8 @@ const { sendMessage, sendError } = require("../common/responses")
 const { User } = require("../models");
 
 
-module.exports.findUser = async (req, res, next) => {
+module.exports.
+findUser = async (req, res, next) => {
     try {        
         req.user = await User.findOne({where: {username: req.body.username}});
 
@@ -13,7 +14,8 @@ module.exports.findUser = async (req, res, next) => {
 }
 
 
-module.exports.hashPassword = async (req, res, next) => {
+module.exports.
+hashPassword = async (req, res, next) => {
     try {
         req.body.password = await bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS));
 
@@ -22,7 +24,8 @@ module.exports.hashPassword = async (req, res, next) => {
 }
 
 
-module.exports.checkPassword = async (req, res, next) => {
+module.exports.
+checkPassword = async (req, res, next) => {
     try {        
         if (await bcrypt.compare(req.body.password, req.user.password)) {
             delete req.user.password;
