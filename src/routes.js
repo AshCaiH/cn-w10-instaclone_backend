@@ -1,11 +1,12 @@
 const { Router } = require("express");
 const router = Router();
 
-const common = require("./controllers/common"); // TODO: Add controllers for image and other.
+const common = require("./controllers/common");
+const user = require("./controllers/user");
 
 // User routes
 router.post("/user/login", common.basic);
-router.post("/user/register", common.basic);
+router.post("/user/register", user.register);
 
 router.get("/user/likes", common.basic); // Show list of user's likes.
 

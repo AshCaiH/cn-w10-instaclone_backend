@@ -5,6 +5,7 @@ module.exports = {
         sendMessage(res, "Success", {headers: req.rawHeaders});
     },
 
+
     getImages: async(req, res, next) => {
         const url = "https://api.unsplash.com/photos?page=1&client_id=" + process.env.UNSPLASH_ACCESS_KEY;
 
@@ -27,5 +28,7 @@ module.exports = {
         const remaining = (response.headers.get("x-ratelimit-remaining") + " remaining requests.");
 
         sendMessage(res, "Success", {remaining: remaining, images: images});
-    }
+    },
+
+
 }
