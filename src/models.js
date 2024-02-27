@@ -22,9 +22,25 @@ User = sequelize.define("User", {
     },
 });
 
+
+module.exports.
+Like = sequelize.define( "Like", {});
+
+
 module.exports.
 Image = sequelize.define( "Image", {
-    url: {
+    id: {
+        primaryKey:true,
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+    },
+    urlSmall: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+    },
+    urlRegular: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,

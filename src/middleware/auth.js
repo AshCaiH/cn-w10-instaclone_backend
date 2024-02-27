@@ -11,7 +11,7 @@ findUser = async (req, res, next) => {
         req.user = await User.findOne({where: {username: req.body.username}});
 
         next();
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -26,7 +26,7 @@ generateToken = async (req, res, next) => {
         req.loginToken = token;
 
         next();
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -37,13 +37,13 @@ verifyToken = async (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
         const user = await User.findOne({where: {id: decodedToken.id }});
+        req.authorisation = user;
 
         if (!user) {
             sendMessage(res, "User not authorised", {}, 401);
-            req.authorisation = user;
         } else next();
 
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -53,7 +53,7 @@ hashPassword = async (req, res, next) => {
         req.body.password = await bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS));
 
         next();
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -66,5 +66,5 @@ checkPassword = async (req, res, next) => {
         } else {
             sendMessage(res, "Incorrect password", 201);
         }
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }

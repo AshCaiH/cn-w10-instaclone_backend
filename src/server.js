@@ -4,10 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
-const { User, Image } = require("./models");
+const { User, Image, Like } = require("./models");
 const router = require("./routes");
 
-const models = [User, Image];
+const models = [User, Like, Image];
 
 const port = process.env.PORT || 5001;
 
@@ -20,8 +20,8 @@ app.get("/health", (req, res) => {
 app.listen(port, async () => {
     models.map((model) => app.use(model));
     
-    User.hasMany(Image);
-    Image.belongsToMany(User, {through: "Likes"});
+    User.hasMany(Like);
+    Image.hasMany(Like);
     
     models.map(async (model) => model.sync());
 

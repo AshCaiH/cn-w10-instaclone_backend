@@ -11,7 +11,7 @@ register = async (req, res) => {
         });
 
         sendMessage(res, "Success", {user: user}, 201);
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -19,7 +19,7 @@ module.exports.
 login = async (req, res) => {
     try {
         sendMessage(res, "Success", {token: req.loginToken}, 201);
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -27,7 +27,7 @@ module.exports.
 list = async (req, res) => {
     try {
         sendMessage(res, "Success", {}, 201);
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }
 
 
@@ -35,5 +35,5 @@ module.exports.
 delete = async (req, res) => {
     try {
         sendMessage(res, "Success", {}, 201);
-    } catch (error) {sendError(res, error);}
+    } catch (error) {sendError(req, res, error);}
 }

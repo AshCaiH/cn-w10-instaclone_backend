@@ -2,7 +2,9 @@ const { Router } = require("express");
 const router = Router();
 
 const common = require("./controllers/common");
+const image = require("./controllers/image");
 const user = require("./controllers/user");
+
 const auth = require("./middleware/auth");
 
 // User routes
@@ -17,11 +19,11 @@ router.delete("/user/delete", common.basic);
 
 
 // Image routes
-router.post("/image/like", common.basic); // Add to table if item doesn't exist, and to user's likes.
+router.post("/image/like", auth.verifyToken, image.like); // Add to table if item doesn't exist, and to user's likes.
 
-router.get("/image/liked", common.basic); // Get list of most liked images.
+router.get("/image/likes", common.basic); // Get list of most liked images.
 
-router.delete("/images/like", common.basic); // Remove from user's likes, and remove from table if not liked by any user.
+router.delete("/images/delike", common.basic); // Remove from user's likes, and remove from table if not liked by any user.
 
 
 // Other routes
