@@ -18,7 +18,7 @@ register = async (req, res) => {
 module.exports.
 login = async (req, res) => {
     try {
-        sendMessage(res, "Success", {}, 201);
+        sendMessage(res, "Success", {token: req.loginToken}, 201);
     } catch (error) {sendError(res, error);}
 }
 

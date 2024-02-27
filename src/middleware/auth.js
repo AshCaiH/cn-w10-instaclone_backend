@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const { sendMessage, sendError } = require("../common/responses")
 const { User } = require("../models");
@@ -10,6 +11,38 @@ findUser = async (req, res, next) => {
         req.user = await User.findOne({where: {username: req.body.username}});
 
         next();
+    } catch (error) {sendError(res, error);}
+}
+
+
+module.exports.
+generateToken = async (req, res, next) => {
+    try {
+        const token = jwt.sign({
+            id: req.user.id,
+            username: req.user.username,
+        }, process.env.JWT_SECRET);
+
+        req.loginToken = token;
+
+        next();
+    } catch (error) {sendError(res, error);}
+}
+
+
+module.exports.
+verifyToken = async (req, res, next) => {
+    try {
+        const token = req.header("Authorization").replace("Bearer ", "");
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user = await User.findOne({where: {id: decodedToken.id }});
+
+        if (!user) {
+            sendMessage(res, "User not authorised", {}, 401);
+            req.authorisation = user;
+        } else next();
+
     } catch (error) {sendError(res, error);}
 }
 

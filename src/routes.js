@@ -6,7 +6,7 @@ const user = require("./controllers/user");
 const auth = require("./middleware/auth");
 
 // User routes
-router.post("/user/login", auth.findUser, auth.checkPassword, common.basic);
+router.post("/user/login", auth.findUser, auth.checkPassword, auth.generateToken, user.login);
 router.post("/user/register", auth.hashPassword, user.register);
 
 router.get("/user/likes", common.basic); // Show list of user's likes.
@@ -27,5 +27,10 @@ router.delete("/images/like", common.basic); // Remove from user's likes, and re
 // Other routes
 router.get("/unsplash/getlist", common.getImages); // Grab images from unsplash.
 router.get("/unsplash/getrandom", common.basic); // Grab a random image from unsplash.
+
+
+// Testing routes
+// TODO: Remove before final hand-in.
+router.get("/testtoken", auth.verifyToken, common.basic);
 
 module.exports = router;
