@@ -3,10 +3,11 @@ const router = Router();
 
 const common = require("./controllers/common");
 const user = require("./controllers/user");
+const auth = require("./middleware/auth");
 
 // User routes
-router.post("/user/login", common.basic);
-router.post("/user/register", user.register);
+router.post("/user/login", auth.findUser, auth.checkPassword, common.basic);
+router.post("/user/register", auth.hashPassword, user.register);
 
 router.get("/user/likes", common.basic); // Show list of user's likes.
 
