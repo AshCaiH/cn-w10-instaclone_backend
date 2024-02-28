@@ -1,11 +1,10 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("./db/connection");
+import { DataTypes } from "sequelize";
+import sequelize from "./db/connection.js";
 
 // For the scope of the project, I've decided to keep all the modules
 // in one file for the sake of simplicity.
 
-module.exports.
-User = sequelize.define("User", {
+export const User = sequelize.define("User", {
     username: {
         type: DataTypes.STRING,
         unique: true,
@@ -23,12 +22,10 @@ User = sequelize.define("User", {
 });
 
 
-module.exports.
-Like = sequelize.define( "Like", {});
+export const Like = sequelize.define( "Like", {});
 
 
-module.exports.
-Image = sequelize.define( "Image", {
+export const Image = sequelize.define( "Image", {
     id: {
         primaryKey:true,
         type: DataTypes.STRING,

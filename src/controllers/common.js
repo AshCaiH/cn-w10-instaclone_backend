@@ -1,12 +1,10 @@
-const { sendMessage } = require("../common/responses")
+import { sendMessage } from "../common/responses.js"
 
-module.exports.
-basic = async(req, res, next) => {
+export const basic = async(req, res, next) => {
     sendMessage(res, "Success", {headers: req.rawHeaders});
 }
 
-module.exports.
-getImages = async(req, res, next) => {
+export const getImages = async(req, res, next) => {
     const url = "https://api.unsplash.com/photos?page=1&client_id=" + process.env.UNSPLASH_ACCESS_KEY;
 
     const response = await fetch(url, {

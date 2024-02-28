@@ -1,8 +1,7 @@
-const { User } = require("../models");
-const { sendMessage, sendError } = require("../common/responses")
+import { User } from "../models.js";
+import { sendMessage, sendError } from "../common/responses.js";
 
-module.exports.
-register = async (req, res) => {
+export const register = async (req, res) => {
     try {
         const user = await User.create({
             username: req.body.username,
@@ -15,24 +14,21 @@ register = async (req, res) => {
 }
 
 
-module.exports.
-login = async (req, res) => {
+export const login = async (req, res) => {
     try {
         sendMessage(res, "Success", {token: req.loginToken}, 201);
     } catch (error) {sendError(req, res, error);}
 }
 
 
-module.exports.
-list = async (req, res) => {
+export const list = async (req, res) => {
     try {
         sendMessage(res, "Success", {}, 201);
     } catch (error) {sendError(req, res, error);}
 }
 
 
-module.exports.
-delete = async (req, res) => {
+export const remove = async (req, res) => {
     try {
         sendMessage(res, "Success", {}, 201);
     } catch (error) {sendError(req, res, error);}

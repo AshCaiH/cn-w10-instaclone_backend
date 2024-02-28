@@ -1,9 +1,8 @@
-const { Image } = require("../models");
-const { Like } = require("../models");
-const { sendMessage, sendError } = require("../common/responses")
+import { Image } from "../models.js";
+import { Like } from "../models.js";
+import { sendMessage, sendError } from "../common/responses.js"
 
-module.exports.
-like = async (req, res, next) => {
+export const like = async (req, res, next) => {
     try {
         let image = await Image.findOne({where: { id: req.body.id}})
 
@@ -34,8 +33,7 @@ like = async (req, res, next) => {
     } catch (error) {sendError(req, res, error);}
 }
 
-module.exports.
-unlike = async (req, res, next) => {
+export const unlike = async (req, res, next) => {
     try {
         console.log("hello");
         const unlikeOptions = { ImageId: req.body.id, UserId: req.authorisation.id}

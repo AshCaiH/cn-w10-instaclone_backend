@@ -1,17 +1,17 @@
-require("dotenv").config();
+import "dotenv/config.js";
 
-const express = require("express");
-const cors = require("cors");
+import express, { json } from "express";
+import cors from "cors";
 const app = express();
 
-const { User, Image, Like } = require("./models");
-const router = require("./routes");
+import { User, Image, Like } from "./models.js";
+import router from "./routes.js";
 
 const models = [User, Like, Image];
 
 const port = process.env.PORT || 5001;
 
-app.use(express.json(), cors(), router);
+app.use(json(), cors(), router);
 
 app.get("/health", (req, res) => {
     res.status(200).json({message: "API is healthy"});

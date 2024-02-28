@@ -1,11 +1,11 @@
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
 
-const common = require("./controllers/common");
-const image = require("./controllers/image");
-const user = require("./controllers/user");
+import * as common from "./controllers/common.js";
+import * as image from "./controllers/image.js";
+import * as user from "./controllers/user.js";
 
-const auth = require("./middleware/auth");
+import * as auth from "./middleware/auth.js";
 
 // User routes
 router.post("/user/login", auth.findUser, auth.checkPassword, auth.generateToken, user.login);
@@ -25,7 +25,6 @@ router.get("/image/likes", common.basic); // Get list of most liked images.
 
 router.delete("/image/unlike", auth.verifyToken, image.unlike); // Remove from user's likes, and remove from table if not liked by any user.
 
-
 // Other routes
 router.get("/unsplash/getlist", common.getImages); // Grab images from unsplash.
 router.get("/unsplash/getrandom", common.basic); // Grab a random image from unsplash.
@@ -35,4 +34,4 @@ router.get("/unsplash/getrandom", common.basic); // Grab a random image from uns
 // TODO: Remove before final hand-in.
 router.get("/testtoken", auth.verifyToken, common.basic);
 
-module.exports = router;
+export default router;
