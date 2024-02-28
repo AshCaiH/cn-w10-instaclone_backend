@@ -1,6 +1,6 @@
 import { Image } from "../models.js";
 import { Like } from "../models.js";
-import { sendMessage, sendError } from "../common/responses.js"
+import { sendMessage, sendError } from "../functions/responses.js"
 
 export const like = async (req, res, next) => {
     try {

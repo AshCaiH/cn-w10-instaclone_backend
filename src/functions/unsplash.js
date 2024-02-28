@@ -1,8 +1,4 @@
-import { sendMessage } from "../common/responses.js"
-
-export const basic = async(req, res, next) => {
-    sendMessage(res, "Success", {headers: req.rawHeaders});
-}
+import { sendMessage } from "./responses.js"
 
 export const getImages = async(req, res, next) => {
     const url = "https://api.unsplash.com/photos?page=1&client_id=" + process.env.UNSPLASH_ACCESS_KEY;

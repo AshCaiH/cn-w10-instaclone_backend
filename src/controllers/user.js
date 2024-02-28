@@ -1,5 +1,5 @@
 import { User } from "../models.js";
-import { sendMessage, sendError } from "../common/responses.js";
+import { sendMessage, sendError } from "../functions/responses.js";
 
 export const register = async (req, res) => {
     try {

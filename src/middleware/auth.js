@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { sendMessage, sendError } from "../common/responses.js"
+import { sendMessage, sendError } from "../functions/responses.js"
 import { User } from "../models.js";
 
 
