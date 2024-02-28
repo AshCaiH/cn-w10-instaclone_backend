@@ -23,7 +23,7 @@ router.post("/image/like", auth.verifyToken, image.like); // Add to table if ite
 
 router.get("/image/likes", common.basic); // Get list of most liked images.
 
-router.delete("/images/delike", common.basic); // Remove from user's likes, and remove from table if not liked by any user.
+router.delete("/image/unlike", auth.verifyToken, image.unlike); // Remove from user's likes, and remove from table if not liked by any user.
 
 
 // Other routes

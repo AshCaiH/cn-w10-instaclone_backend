@@ -33,3 +33,14 @@ like = async (req, res, next) => {
 
     } catch (error) {sendError(req, res, error);}
 }
+
+module.exports.
+unlike = async (req, res, next) => {
+    try {
+        console.log("hello");
+        const unlikeOptions = { ImageId: req.body.id, UserId: req.authorisation.id}
+        const unlike = await Like.destroy({where: unlikeOptions});
+
+        sendMessage(res, "Removed like", {unlike}, 201);
+    } catch (error) {sendError(req, res, error);}
+}
