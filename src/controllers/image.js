@@ -7,7 +7,6 @@ export const like = async (req, res, next) => {
         let image = await Image.findOne({where: { id: req.body.id}})
 
         if (!image) {
-            console.log("ding");
             // Create new entry in Image table and assign it to image variable.
             image = await Image.create({
                 id: req.body.id,
@@ -16,7 +15,6 @@ export const like = async (req, res, next) => {
                 photographer: req.body.photographer,
             })
         }
-
 
         const likeOptions = { ImageId: image.id, UserId: req.authorisation.id}
 
@@ -33,6 +31,7 @@ export const like = async (req, res, next) => {
     } catch (error) {sendError(req, res, error);}
 }
 
+
 export const unlike = async (req, res, next) => {
     try {
         console.log("hello");
@@ -40,5 +39,18 @@ export const unlike = async (req, res, next) => {
         const unlike = await Like.destroy({where: unlikeOptions});
 
         sendMessage(res, "Removed like", {unlike}, 201);
+    } catch (error) {sendError(req, res, error);}
+}
+
+
+export const checkLiked = async (req, res, next) => {
+    try {
+        let isLiked = await Like.findOne({ where: { ImageId: req.body.id, UserId: req.authorisation.id}});
+
+        if (isLiked) {
+            sendMessage(res, "User likes this", {like: true}, 201);
+        } else {
+            sendMessage(res, "User doesn't like this.", {like: false}, 201);
+        }
     } catch (error) {sendError(req, res, error);}
 }
