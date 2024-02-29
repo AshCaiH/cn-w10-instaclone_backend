@@ -9,7 +9,8 @@ export const findUser = async (req, res, next) => {
     try {        
         req.user = await User.findOne({where: {username: req.body.username}});
 
-        next();
+        if (!req.user) sendMessage(res, "", {error: "User does not exist"}, 401);
+        else next();
     } catch (error) {sendError(req, res, error);}
 }
 
@@ -37,7 +38,7 @@ export const verifyToken = async (req, res, next) => {
         req.authorisation = user;
 
         if (!user) {
-            sendMessage(res, "User not authorised", {}, 401);
+            sendMessage(res, "User not authorised", {error: "User not authorised"}, 401);
         } else next();
 
     } catch (error) {sendError(req, res, error);}
@@ -59,7 +60,7 @@ export const checkPassword = async (req, res, next) => {
             delete req.user.password;
             next();
         } else {
-            sendMessage(res, "Incorrect password", 201);
+            sendMessage(res, "", {error: "Password incorrect"}, 401);
         }
     } catch (error) {sendError(req, res, error);}
 }
