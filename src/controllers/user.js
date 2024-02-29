@@ -16,7 +16,14 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        sendMessage(res, "Success", {token: req.loginToken}, 201);
+        const user = {
+            username: req.user.username,
+            token: req.loginToken
+        }
+
+        sendMessage(res, "Success", {
+            user: user
+        }, 201);
     } catch (error) {sendError(req, res, error);}
 }
 
