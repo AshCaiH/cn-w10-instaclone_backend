@@ -11,7 +11,13 @@ const models = [User, Like, Image];
 
 const port = process.env.PORT || 5001;
 
-app.use(json(), cors(), router);
+const corsOptions = {
+    AccessControlAllowOrigin: '*',
+    origin: process.env.FRONTEND_URL,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+}
+
+app.use(json(), cors(corsOptions), router);
 
 app.get("/health", (req, res) => {
     res.status(200).json({message: "API is healthy"});
