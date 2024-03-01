@@ -30,12 +30,7 @@ router.delete("/image/unlike", auth.verifyToken, image.unlike); // Remove from u
 
 
 // Other routes
-router.get("/unsplash/getlist", unsplash.getImages); // Grab images from unsplash.
+router.get("/unsplash/getlist/:pageNo", unsplash.getImages); // Grab images from unsplash.
 router.get("/unsplash/getrandom", unsplash.getRandomImage); // Grab a random image from unsplash.
-
-
-// Testing routes
-// TODO: Remove before final hand-in.
-router.get("/testtoken", auth.verifyToken, common.basic);
 
 export default router;
