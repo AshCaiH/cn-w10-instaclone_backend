@@ -35,11 +35,12 @@ const unsplashRequest = async (url) => {
 }
 
 export const getImages = async(req, res, next) => {
+    try {
+        const url = `https://api.unsplash.com/photos?page=${req.params.pageNo}&client_id=${process.env.UNSPLASH_ACCESS_KEY}` 
+        const api = await unsplashRequest(url)
 
-    const url = "https://api.unsplash.com/photos?page=1&client_id=" + process.env.UNSPLASH_ACCESS_KEY
-    const api = await unsplashRequest(url)
-
-    sendMessage(res, "Success", {remaining: api.remaining, images: api.images});
+        sendMessage(res, "Success", {remaining: api.remaining, images: api.images});
+    } catch (error) {sendError(req, res, error);}
 }
 
 export const getRandomImage = async (req, res, next) => {
