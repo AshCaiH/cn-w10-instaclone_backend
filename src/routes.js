@@ -13,7 +13,7 @@ import * as auth from "./middleware/auth.js";
 router.post("/user/login", auth.findUser, auth.checkPassword, auth.generateToken, user.login);
 router.post("/user/register", auth.hashPassword, user.register);
 
-router.get("/user/likes", common.basic); // Show list of user's likes.
+router.get("/user/likes", auth.verifyToken, user.getLikes); // Show list of user's likes.
 
 router.put("/user/update", common.basic); // Update email, password, etc.
 
