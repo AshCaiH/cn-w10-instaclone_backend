@@ -14,7 +14,7 @@ const port = process.env.PORT || 5001;
 const corsOptions = {
     AccessControlAllowOrigin: '*',
     origin: process.env.FRONTEND_URL,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
 }
 
 app.use(json(), cors(corsOptions), router);
