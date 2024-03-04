@@ -24,12 +24,12 @@ app.get("/health", (req, res) => {
 });
 
 app.listen(port, async () => {
-    models.map((model) => app.use(model));
+    models.forEach(model => app.use(model));
     
     User.hasMany(Like);
     Image.hasMany(Like);
     
-    models.map(async (model) => model.sync());
+    models.forEach(async (model) => model.sync());
 
     console.log(`Server is listening on port ${port}`);
 });
